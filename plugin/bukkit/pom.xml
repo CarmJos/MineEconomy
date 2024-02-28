@@ -38,15 +38,15 @@
         </dependency>
 
         <dependency>
-            <groupId>cc.carm.lib</groupId>
-            <artifactId>easyplugin-main</artifactId>
-            <version>${deps.easyplugin.version}</version>
+            <groupId>dev.rollczi</groupId>
+            <artifactId>litecommands-bukkit</artifactId>
+            <version>${deps.litecommands.version}</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>cc.carm.lib</groupId>
-            <artifactId>easyplugin-command</artifactId>
+            <artifactId>easyplugin-main</artifactId>
             <version>${deps.easyplugin.version}</version>
             <scope>compile</scope>
         </dependency>
