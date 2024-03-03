@@ -20,8 +20,8 @@
 
 package cc.carm.plugin.mineeconomy;
 
-public class MineEconomyAPI {
+public class MineEconomyBukkit {
 
-
+    
 
 }

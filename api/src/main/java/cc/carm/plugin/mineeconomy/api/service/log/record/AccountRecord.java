@@ -18,10 +18,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cc.carm.plugin.mineeconomy;
+package cc.carm.plugin.mineeconomy.api.service.log.record;
 
-public class MineEconomyAPI {
-
-
-
+public class AccountRecord {
 }

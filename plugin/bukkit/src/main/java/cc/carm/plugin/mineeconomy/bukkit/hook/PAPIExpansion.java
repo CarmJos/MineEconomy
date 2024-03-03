@@ -18,10 +18,19 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cc.carm.plugin.mineeconomy;
+package cc.carm.plugin.mineeconomy.bukkit.hook;
 
-public class MineEconomyAPI {
+import cc.carm.lib.easyplugin.papi.EasyPlaceholder;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+
+public class PAPIExpansion extends EasyPlaceholder {
+
+    public PAPIExpansion(@NotNull JavaPlugin plugin, @NotNull String rootIdentifier) {
+        super(plugin, rootIdentifier);
 
 
+
+    }
 
 }

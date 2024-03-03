@@ -18,9 +18,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cc.carm.plugin.mineeconomy;
+package cc.carm.plugin.mineeconomy.api.manager;
 
-public class MineEconomyAPI {
+public interface CurrencyManager {
+
+    
 
 
 
