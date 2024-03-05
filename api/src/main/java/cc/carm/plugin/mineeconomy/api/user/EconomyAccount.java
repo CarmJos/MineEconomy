@@ -21,7 +21,7 @@
 package cc.carm.plugin.mineeconomy.api.user;
 
 import cc.carm.plugin.mineeconomy.api.currency.EconomyCurrency;
-import cc.carm.plugin.mineeconomy.api.operation.OperationMetadata;
+import cc.carm.plugin.mineeconomy.api.operation.OperationDetails;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
@@ -52,10 +52,10 @@ public interface EconomyAccount {
     BigDecimal get(@NotNull EconomyCurrency currency);
 
     CompletableFuture<Boolean> set(@NotNull Map<EconomyCurrency, BigDecimal> balances,
-                                   @Nullable OperationMetadata metadata);
+                                   @Nullable OperationDetails metadata);
 
     CompletableFuture<Boolean> update(@NotNull Map<EconomyCurrency, BigDecimal> changes,
-                                      @Nullable OperationMetadata metadata);
+                                      @Nullable OperationDetails metadata);
 
     void clear(@NotNull EconomyCurrency currency);
 

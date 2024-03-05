@@ -20,5 +20,58 @@
 
 package cc.carm.plugin.mineeconomy.api.manager;
 
+import cc.carm.plugin.mineeconomy.api.currency.EconomyCurrency;
+import cc.carm.plugin.mineeconomy.api.user.EconomyAccount;
+import cc.carm.plugin.mineeconomy.api.user.UserKey;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Unmodifiable;
+
+import java.math.BigDecimal;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+
 public interface AccountManager {
+
+    @NotNull ExecutorService getExecutor();
+
+    @Unmodifiable
+    @NotNull Set<EconomyAccount> cacheAccounts();
+
+    void unload(@NotNull UUID userUUID);
+
+    @Nullable EconomyAccount get(@NotNull UUID userUUID);
+
+    @Nullable EconomyAccount get(long uid);
+
+    default @Nullable EconomyAccount get(@NotNull UserKey key) {
+        return get(key.id());
+    }
+
+    CompletableFuture<@NotNull EconomyAccount> fetch(@NotNull UUID userUUID);
+
+    CompletableFuture<@NotNull EconomyAccount> fetch(long uid);
+
+    default CompletableFuture<@NotNull EconomyAccount> fetch(@NotNull UserKey key) {
+        return fetch(key.id());
+    }
+
+    CompletableFuture<@NotNull BigDecimal> fetch(@NotNull UUID userUUID, @NotNull EconomyCurrency currency);
+
+    CompletableFuture<@NotNull BigDecimal> fetch(long uid, @NotNull EconomyCurrency currency);
+
+    default CompletableFuture<@NotNull BigDecimal> fetch(@NotNull UserKey key, @NotNull EconomyCurrency currency) {
+        return fetch(key.id(), currency);
+    }
+
+    CompletableFuture<@NotNull EconomyAccount> peek(@NotNull UUID userUUID);
+
+    CompletableFuture<@NotNull EconomyAccount> peek(long uid);
+
+    default CompletableFuture<@NotNull EconomyAccount> peek(@NotNull UserKey key) {
+        return fetch(key.id());
+    }
+
 }

@@ -18,11 +18,21 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cc.carm.plugin.mineeconomy.api.currency.feature;
+package cc.carm.plugin.mineeconomy.api.currency;
 
-public interface CurrencyFeature {
+import cc.carm.plugin.mineeconomy.api.currency.option.CurrencyOption;
 
+public interface CurrencyOptions {
 
+    CurrencyOption<String> NAME = CurrencyOption.of("name", String.class, null);
 
+    CurrencyOption<String> DESCRIPTION = CurrencyOption.of("description", String.class, null);
+
+    CurrencyOption<String> SYMBOL = CurrencyOption.of("symbol", String.class, "$");
+
+    interface QUANTIFIER {
+        CurrencyOption<String> SINGULAR = CurrencyOption.of("quantifier.singular", String.class, "dollar");
+        CurrencyOption<String> PLURAL = CurrencyOption.of("quantifier.plural", String.class, "dollars");
+    }
 
 }
