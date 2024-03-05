@@ -18,7 +18,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cc.carm.plugin.mineeconomy.api.user;
+package cc.carm.plugin.mineeconomy.api.account;
 
 import cc.carm.plugin.mineeconomy.api.currency.EconomyCurrency;
 import cc.carm.plugin.mineeconomy.api.operation.OperationDetails;
@@ -30,10 +30,24 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-public interface EconomyAccount {
+public interface EconomyAccount<K> {
+
+    @NotNull K key();
 
     @Unmodifiable
     @NotNull Map<EconomyCurrency, BigDecimal> balances();
+
+    CompletableFuture<BigDecimal> fetch(@NotNull EconomyCurrency currency);
+
+    @NotNull BigDecimal get(@NotNull EconomyCurrency currency);
+
+    CompletableFuture<Boolean> set(@NotNull Map<EconomyCurrency, BigDecimal> balances,
+                                   @Nullable OperationDetails details);
+
+    CompletableFuture<Boolean> update(@NotNull Map<EconomyCurrency, BigDecimal> changes,
+                                      @Nullable OperationDetails details);
+
+    CompletableFuture<Boolean> clear(@NotNull EconomyCurrency currency);
 
     default boolean has(@NotNull EconomyCurrency currency, @NotNull BigDecimal amount) {
         return get(currency).compareTo(amount) >= 0;
@@ -46,17 +60,5 @@ public interface EconomyAccount {
     default boolean has(@NotNull Map<EconomyCurrency, BigDecimal> balances) {
         return balances.entrySet().stream().anyMatch(entry -> has(entry.getKey(), entry.getValue()));
     }
-
-    CompletableFuture<BigDecimal> fetch(@NotNull EconomyCurrency currency);
-
-    BigDecimal get(@NotNull EconomyCurrency currency);
-
-    CompletableFuture<Boolean> set(@NotNull Map<EconomyCurrency, BigDecimal> balances,
-                                   @Nullable OperationDetails metadata);
-
-    CompletableFuture<Boolean> update(@NotNull Map<EconomyCurrency, BigDecimal> changes,
-                                      @Nullable OperationDetails metadata);
-
-    void clear(@NotNull EconomyCurrency currency);
 
 }

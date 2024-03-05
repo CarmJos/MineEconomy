@@ -22,6 +22,7 @@ package cc.carm.plugin.mineeconomy.api.manager;
 
 import cc.carm.plugin.mineeconomy.api.currency.EconomyCurrency;
 import cc.carm.plugin.mineeconomy.api.currency.option.CurrencyOptionsHolder;
+import cc.carm.plugin.mineeconomy.api.service.storage.CurrencyStorage;
 import org.jetbrains.annotations.*;
 
 import java.math.BigDecimal;
@@ -31,6 +32,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public interface CurrencyManager {
+
+    @NotNull CurrencyStorage storage();
 
     CompletableFuture<Integer> pull();
 

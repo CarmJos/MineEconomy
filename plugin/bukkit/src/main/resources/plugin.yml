@@ -1,0 +1,15 @@
+main: cc.carm.plugin.mineeconomy.MineEconomyBukkit
+name: MineEconomy
+version: ${project.version}
+
+description: ${project.description}
+website: ${project.url}
+authors:
+  - CarmJos
+
+load: STARTUP
+api-version: 1.16
+
+softdepend:
+  - Vault
+  - PlaceholderAPI

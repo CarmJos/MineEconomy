@@ -18,7 +18,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cc.carm.plugin.mineeconomy.api.service.storage.base;
+package cc.carm.plugin.mineeconomy.api.account.bank;
 
-public interface CurrencyStorage {
+public interface EconomyBank {
 }

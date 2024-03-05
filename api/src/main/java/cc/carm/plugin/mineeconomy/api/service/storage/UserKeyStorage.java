@@ -20,8 +20,7 @@
 
 package cc.carm.plugin.mineeconomy.api.service.storage;
 
-public interface DataStorage {
-
+public interface UserKeyStorage {
 
 
 

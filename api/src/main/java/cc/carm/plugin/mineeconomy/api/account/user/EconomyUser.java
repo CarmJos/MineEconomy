@@ -18,10 +18,24 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cc.carm.plugin.mineeconomy.api.service.storage.base;
+package cc.carm.plugin.mineeconomy.api.account.user;
 
-public interface UserStorage {
+import cc.carm.plugin.mineeconomy.api.account.EconomyAccount;
 
+import java.util.UUID;
 
+public interface EconomyUser extends EconomyAccount<UserKey> {
+
+    default long uid() {
+        return key().id();
+    }
+
+    default UUID uuid() {
+        return key().uuid();
+    }
+
+    default String username() {
+        return key().name();
+    }
 
 }

@@ -20,41 +20,44 @@
 
 package cc.carm.plugin.mineeconomy.api.manager;
 
+import cc.carm.plugin.mineeconomy.api.account.user.EconomyUser;
 import cc.carm.plugin.mineeconomy.api.currency.EconomyCurrency;
-import cc.carm.plugin.mineeconomy.api.user.EconomyAccount;
-import cc.carm.plugin.mineeconomy.api.user.UserKey;
+import cc.carm.plugin.mineeconomy.api.service.storage.AccountStorage;
+import cc.carm.plugin.mineeconomy.api.account.user.UserKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 
 public interface AccountManager {
 
-    @NotNull ExecutorService getExecutor();
+    @NotNull AccountStorage storage();
+
+    @NotNull ExecutorService executor();
 
     @Unmodifiable
-    @NotNull Set<EconomyAccount> cacheAccounts();
+    @NotNull Map<UUID, EconomyUser> users();
 
     void unload(@NotNull UUID userUUID);
 
-    @Nullable EconomyAccount get(@NotNull UUID userUUID);
+    @Nullable EconomyUser get(@NotNull UUID userUUID);
 
-    @Nullable EconomyAccount get(long uid);
+    @Nullable EconomyUser get(long uid);
 
-    default @Nullable EconomyAccount get(@NotNull UserKey key) {
+    default @Nullable EconomyUser get(@NotNull UserKey key) {
         return get(key.id());
     }
 
-    CompletableFuture<@NotNull EconomyAccount> fetch(@NotNull UUID userUUID);
+    CompletableFuture<@NotNull EconomyUser> fetch(@NotNull UUID userUUID);
 
-    CompletableFuture<@NotNull EconomyAccount> fetch(long uid);
+    CompletableFuture<@NotNull EconomyUser> fetch(long uid);
 
-    default CompletableFuture<@NotNull EconomyAccount> fetch(@NotNull UserKey key) {
+    default CompletableFuture<@NotNull EconomyUser> fetch(@NotNull UserKey key) {
         return fetch(key.id());
     }
 
@@ -66,12 +69,20 @@ public interface AccountManager {
         return fetch(key.id(), currency);
     }
 
-    CompletableFuture<@NotNull EconomyAccount> peek(@NotNull UUID userUUID);
+    default CompletableFuture<@NotNull EconomyUser> peek(@NotNull UUID userUUID) {
+        EconomyUser loaded = get(userUUID);
+        if (loaded != null) return CompletableFuture.completedFuture(loaded);
+        else return fetch(userUUID);
+    }
 
-    CompletableFuture<@NotNull EconomyAccount> peek(long uid);
+    default CompletableFuture<@NotNull EconomyUser> peek(long uid) {
+        EconomyUser loaded = get(uid);
+        if (loaded != null) return CompletableFuture.completedFuture(loaded);
+        else return fetch(uid);
+    }
 
-    default CompletableFuture<@NotNull EconomyAccount> peek(@NotNull UserKey key) {
-        return fetch(key.id());
+    default CompletableFuture<@NotNull EconomyUser> peek(@NotNull UserKey key) {
+        return peek(key.id());
     }
 
 }

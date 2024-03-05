@@ -1,6 +1,7 @@
 package cc.carm.plugin.mineeconomy.api.manager;
 
-import cc.carm.plugin.mineeconomy.api.user.UserKey;
+import cc.carm.plugin.mineeconomy.api.service.storage.UserKeyStorage;
+import cc.carm.plugin.mineeconomy.api.account.user.UserKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -9,9 +10,11 @@ import java.util.UUID;
 
 public interface UserKeyManager {
 
+    @NotNull UserKeyStorage storage();
+
     @NotNull UserKey upsertKey(@NotNull UUID userUUID, @NotNull String username) throws Exception;
 
-    @Nullable UserKey getKey(UserKey.KeyType type, Object param);
+    @Nullable UserKey getKey(UserKey.UserKeyType<?> userKeyType, Object param);
 
     default @Nullable UserKey getKey(long id) {
         return getKey(UserKey.KeyTypes.ID, id);

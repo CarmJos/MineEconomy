@@ -38,6 +38,14 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>mineeconomy-api</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+
         <!--suppress VulnerableLibrariesLocal -->
         <dependency>
             <groupId>cc.carm.lib</groupId>
