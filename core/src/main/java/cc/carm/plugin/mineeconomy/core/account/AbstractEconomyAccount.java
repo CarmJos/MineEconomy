@@ -18,7 +18,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cc.carm.plugin.mineeconomy.account;
+package cc.carm.plugin.mineeconomy.core.account;
 
 import cc.carm.plugin.mineeconomy.api.account.EconomyAccount;
 import cc.carm.plugin.mineeconomy.api.currency.EconomyCurrency;
@@ -78,8 +78,10 @@ public abstract class AbstractEconomyAccount<K> implements EconomyAccount<K> {
         return null;
     }
 
-    private synchronized boolean applyChanges(Map<EconomyCurrency, Double> finalValues,
+    private synchronized boolean applyChanges(@NotNull Map<EconomyCurrency, Double> finalValues,
                                               @NotNull OperationDetails details) {
+
+
 
         return false;
     }
