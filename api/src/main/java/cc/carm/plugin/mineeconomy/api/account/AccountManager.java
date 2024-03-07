@@ -18,9 +18,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cc.carm.plugin.mineeconomy.api.manager;
+package cc.carm.plugin.mineeconomy.api.account;
 
-import cc.carm.plugin.mineeconomy.api.account.EconomyAccount;
 import cc.carm.plugin.mineeconomy.api.currency.EconomyCurrency;
 import cc.carm.plugin.mineeconomy.api.service.storage.AccountStorage;
 import org.jetbrains.annotations.NotNull;
@@ -39,7 +38,7 @@ public interface AccountManager<K, R extends EconomyAccount<K>> {
     @NotNull ExecutorService executor();
 
     @Unmodifiable
-    @NotNull Map<K, R> accounts();
+    @NotNull Map<K, R> loadedAccounts();
 
     void unload(@NotNull K key);
 

@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Range;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-public final class EconomyCurrency {
+public class EconomyCurrency {
 
     public static CurrencyBuilder builderOf(@NotNull String key) {
         return CurrencyBuilder.of(key);
@@ -44,11 +44,12 @@ public final class EconomyCurrency {
         return new EconomyCurrency(key, id, baseValue, options);
     }
 
-    private final @NotNull String key;
-    private final @NotNull BigDecimal baseValue;
-    private final @NotNull CurrencyOptionsHolder options;
+    protected final @NotNull String key;
+    protected final @NotNull BigDecimal baseValue;
 
-    private @Nullable @Range(from = 0, to = 255) Integer dataID;
+    protected final @NotNull CurrencyOptionsHolder options;
+
+    protected @Nullable @Range(from = 0, to = 255) Integer dataID;
 
     public EconomyCurrency(@NotNull String key, @Nullable @Range(from = 0, to = 255) Integer id,
                            @NotNull BigDecimal baseValue, @NotNull CurrencyOptionsHolder options) {

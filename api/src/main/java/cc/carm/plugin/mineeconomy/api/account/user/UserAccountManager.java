@@ -18,19 +18,25 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cc.carm.plugin.mineeconomy.api.manager;
+package cc.carm.plugin.mineeconomy.api.account.user;
 
-import cc.carm.plugin.mineeconomy.api.account.user.EconomyUser;
-import cc.carm.plugin.mineeconomy.api.account.user.UserKey;
+import cc.carm.plugin.mineeconomy.api.account.AccountManager;
 import cc.carm.plugin.mineeconomy.api.currency.EconomyCurrency;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public interface UserAccountManager extends AccountManager<UserKey, EconomyUser> {
+
+    @Unmodifiable
+    default @NotNull Map<UserKey, EconomyUser> loadedUsers() {
+        return loadedAccounts();
+    }
 
     void unload(@NotNull UUID userUUID);
 
