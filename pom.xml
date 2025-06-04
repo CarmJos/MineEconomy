@@ -40,7 +40,7 @@
         <deps.easylistener.version>2.0.1</deps.easylistener.version>
         <deps.caffeine.version>3.1.5</deps.caffeine.version>
         <deps.expressible.version>1.3.6</deps.expressible.version>
-        <deps.litecommands.version>3.9.7</deps.litecommands.version>
+        <deps.litecommands.version>3.10.0</deps.litecommands.version>
     </properties>
     <groupId>cc.carm.plugin</groupId>
     <artifactId>mineeconomy-parent</artifactId>
